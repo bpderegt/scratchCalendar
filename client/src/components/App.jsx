@@ -16,6 +16,7 @@ class App extends React.Component {
       reservationHover: [],
       reservationEnd: [],
     };
+    this.onDayClick = this.onDayClick.bind(this);
     this.monthIndexIncrementer = this.monthIndexIncrementer.bind(this);
   }
 
@@ -43,11 +44,16 @@ class App extends React.Component {
 
   monthIndexIncrementer(e) {
     e.preventDefault();
-    let { monthIndex } = this.state;
-    monthIndex++;
-    this.setState({
-      monthIndex
-    });
+    // let { monthIndex } = this.state;
+    // monthIndex++;
+    // this.setState({
+    //   monthIndex
+    // });
+  }
+
+  onDayClick(e, row, column) {
+    e.preventDefault();
+    console.log(row, column)
   }
 
   render() {
@@ -56,7 +62,7 @@ class App extends React.Component {
       monthIndex,
       availableMonths
     } = this.state;
-    console.log(availableMonths)
+    // console.log(availableMonths)
 
     if (availableMonths.length === 0) return <div />
 
@@ -64,11 +70,11 @@ class App extends React.Component {
       <AppWrapper onClick={this.monthIndexIncrementer}>
         {availableMonths[monthIndex]}
         {calendar[availableMonths[monthIndex]].map((week, index) => (
-          <Weeks key={index} row={index} week={week} />
+          <Weeks key={index} row={index} week={week} onDayClick={this.onDayClick} />
         ))}
         {availableMonths[monthIndex + 1]}
         {calendar[availableMonths[monthIndex + 1]].map((week, index) => (
-          <Weeks key={index} row={index} week={week} />
+          <Weeks key={index} row={index} week={week} onDayClick={this.onDayClick} />
         ))}
       </AppWrapper>
     )

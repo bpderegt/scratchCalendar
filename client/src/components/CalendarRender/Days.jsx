@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Days = ({ day, row, column }) => {
+const Days = ({ day, row, column, onDayClick }) => {
   return (
-    <DayWrapper >
+    <DayWrapper onClick={(e) => day.day === null ? null : onDayClick(e, row, column)}>
       <DetailWrapper vacant={day.vacant}>
         {day.day}
       </DetailWrapper>
@@ -19,9 +19,10 @@ const DayWrapper = styled.div`
 `;
 
 const DetailWrapper = styled.div`
-  border: 1px solid black;
   text-decoration: ${props => props.vacant ? "none" : "line-through"};
   color: ${props => props.vacant ? "black" : "lightgrey"};
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
   height: inherit;
   width: inherit;
 `;

@@ -57,9 +57,7 @@ const _numDateToObj = (numDate) => {
   }
 
   let day = numDate - (_daysPerMonth[i - 1] || 0);
-  console.log(numDate);
   if (year % 4 === 0) {
-    // console.log('yoyoyo')
     if (i === 3) {
       if (day === 1) {
         i -= 1;
@@ -79,8 +77,8 @@ const _numDateToObj = (numDate) => {
   return { weekday, monthString, monthNum, day, year };
 }
 
-let date = `1/2/2021`
-console.log(_numDateToObj(Math.floor(Date.parse(date) / 1000 / 60 / 60 / 24)))
+// let date = `1/2/2021`
+// console.log(_numDateToObj(Math.floor(Date.parse(date) / 1000 / 60 / 60 / 24)))
 
 const makeCalendar = (today, bookedDates) => {
   const calendar = {};
